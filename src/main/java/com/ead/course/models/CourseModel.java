@@ -58,7 +58,10 @@ public class CourseModel  implements Serializable {
     @Column(nullable = false)
     private UUID userInstructor;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY/*, cascade = CascadeType.ALL, orphanRemoval = true*/)//uma forma de deletar. Não é performática, ou seja, não tem bom desempenho. 
+                                                                                                               //Delega ao JPA como fazer essa deleção. O JPA faz um delete pra course e um delete pra cada module.
     @Fetch(FetchMode.SUBSELECT)
+    /*@OnDelete(action = OnDeleteAction.CASCADE)*///outra forma de deletar. Não é performática, ou seja, não tem bom desempenho.
+                                                  //Delega ao banco de dados a deleção. BD cria 2 deletes, um para course e outra para todos os modules.  
     private Set<ModuleModel> modules;
 }
