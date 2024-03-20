@@ -47,7 +47,7 @@ public class CourseController {
 	public ResponseEntity<Object> deleteCourse(@PathVariable(value="courseId") UUID courseId){
 		Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
 		if(!courseModelOptional.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Curso não econtrado!");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Curso não encontrado!");
 		}
 		courseService.delete(courseModelOptional.get());
 		return ResponseEntity.status(HttpStatus.OK).body("Curso deletado com sucesso!");
@@ -58,7 +58,7 @@ public class CourseController {
 														@RequestBody @Valid CourseDto courseDto){
 		Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
 		if(!courseModelOptional.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Curso não econtrado!");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Curso não encontrado!");
 		}
 		var courseModel = courseModelOptional.get();
 		courseModel.setName(courseDto.getName());
@@ -79,7 +79,7 @@ public class CourseController {
 	public ResponseEntity<Object> getOneCourse(@PathVariable(value="courseId") UUID courseId){
 		Optional<CourseModel> courseModelOptional = courseService.findById(courseId);
 		if(!courseModelOptional.isPresent()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Curso não econtrado!");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Curso não encontrado!");
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(courseModelOptional.get());
 	}
