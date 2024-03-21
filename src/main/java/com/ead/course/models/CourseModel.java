@@ -54,7 +54,7 @@ public class CourseModel  implements Serializable {
     private CourseStatus courseStatus;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private CourseLevel CourseLevel;
+    private CourseLevel courseLevel;
     @Column(nullable = false)
     private UUID userInstructor;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
