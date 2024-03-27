@@ -5,9 +5,9 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.ead.course.models.CourseModel;
-import com.ead.course.specifications.SpecificationTemplate;
 
 public interface CourseService {
 
@@ -17,6 +17,8 @@ public interface CourseService {
 
 	public Optional<CourseModel> findById(UUID courseId);
 
-	public Page<CourseModel> findAll(SpecificationTemplate.CourseSpec spec, Pageable pageable);
+	//public Page<CourseModel> findAll(SpecificationTemplate.CourseSpec spec, Pageable pageable);
+	
+	public Page<CourseModel> findAll(Specification<CourseModel> spec, Pageable pageable);
 	
 }
