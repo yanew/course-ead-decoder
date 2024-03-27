@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+
 import com.ead.course.enums.CourseLevel;
 import com.ead.course.enums.CourseStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -66,4 +67,7 @@ public class CourseModel  implements Serializable {
     /*@OnDelete(action = OnDeleteAction.CASCADE)*///outra forma de deletar. Não é performática, ou seja, não tem bom desempenho.
                                                   //Delega ao banco de dados a deleção. BD cria 2 deletes, um para course e outra para todos os modules.  
     private Set<ModuleModel> modules;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private Set<CourseUserModel> coursesUsers;
 }
